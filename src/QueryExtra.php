@@ -11,22 +11,83 @@ namespace RakibDevs\QueryExtra;
  */
 
 use RakibDevs\QueryExtra\Options\BulkUpdate;
+use RakibDevs\QueryExtra\Traits\ProcessQuery;
 
 class QueryExtra
 {
+	use ProcessQuery;
 
+	/**
+     * The base query table instance.
+     *
+     * @var \RakibDevs\QueryExtra\QueryExtra
+     */
 	protected $table;
 
+	/**
+     * The base query where key instance.
+     *
+     * @var \RakibDevs\QueryExtra\QueryExtra
+     */
 
-	public static function bulkUpdate(string $table, string $key, array $update)
+	protected $whereKey;
+
+	/**
+     * The base query instance.
+     *
+     * @var \RakibDevs\QueryExtra\QueryExtra
+     */
+
+	protected $query;
+
+
+
+	/**
+	 * Bulk update
+     * 
+     * @param  array $update
+     * @return boolean
+    */
+
+	public function bulkUpdate(array $update)
 	{
-		self::run(BulkUpdate::make($table, $key, $update));
+		$this->buildUpdateQuery($update)
+			 ->run();
 	}
 
-	public static function run(string $qr)
+	/**
+	 * Build bulk update query 
+     * 
+     * @param  array $update
+     * @return $this
+     * update array basic structure
+       $update = [
+    		[
+    			'data' => [
+    				'field_1' => 'field_1_v1lue_a',
+    				'field_2' => 'field_2_v1lue_a'
+    			],
+    			'value' => 2
+    		],
+    		[
+    			'data' => [
+    				'field_2' => 'field_1_v1lue_b',
+    				'field_2' => 'field_1_v1lue_b'
+    			],
+    			'value' => 3
+    		],
+    	];
+     *
+     */
+
+	public function buildUpdateQuery(array $update)
 	{
-		dd($qr);
-		return DB::statement($qr);
+		$this->query = (new BulkUpdate)
+			->make($this->table, $this->whereKey, $update);
+
+		return $this;
 	}
+
+	
 
 }
