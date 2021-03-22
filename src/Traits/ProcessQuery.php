@@ -7,6 +7,29 @@ use Illuminate\Support\Facades\DB;
 trait ProcessQuery
 {
 	/**
+     * The base query table instance.
+     *
+     * @var \RakibDevs\QueryExtra\QueryExtra
+     */
+	protected $table;
+
+	/**
+     * The base query where key instance.
+     *
+     * @var \RakibDevs\QueryExtra\QueryExtra
+     */
+
+	protected $whereKey;
+
+	/**
+     * The base query instance.
+     *
+     * @var \RakibDevs\QueryExtra\QueryExtra
+     */
+
+	protected $query;
+
+	/**
 	 * Set base table.
      *
      * @param  string  $id
@@ -35,12 +58,12 @@ trait ProcessQuery
 	}
 
 	/**
-	 * Initiate Query 
-     *
+	 * Initiate SQL Query 
+     * lluminate\Support\Facades\DB
      * @return boolean
      */
 
-	private function run()
+	protected function run()
 	{
 		return DB::statement($this->query);
 	}

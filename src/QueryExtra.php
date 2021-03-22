@@ -18,31 +18,6 @@ class QueryExtra
 	use ProcessQuery;
 
 	/**
-     * The base query table instance.
-     *
-     * @var \RakibDevs\QueryExtra\QueryExtra
-     */
-	protected $table;
-
-	/**
-     * The base query where key instance.
-     *
-     * @var \RakibDevs\QueryExtra\QueryExtra
-     */
-
-	protected $whereKey;
-
-	/**
-     * The base query instance.
-     *
-     * @var \RakibDevs\QueryExtra\QueryExtra
-     */
-
-	protected $query;
-
-
-
-	/**
 	 * Bulk update
      * 
      * @param  array $update
@@ -56,7 +31,7 @@ class QueryExtra
 	}
 
 	/**
-	 * Build bulk update query 
+	 * Build and set query for bulk update
      * 
      * @param  array $update
      * @return $this
@@ -80,14 +55,11 @@ class QueryExtra
      *
      */
 
-	public function buildUpdateQuery(array $update)
+	protected function buildUpdateQuery(array $update)
 	{
 		$this->query = (new BulkUpdate)
-			->make($this->table, $this->whereKey, $update);
-
+			            ->make($this->table, $this->whereKey, $update);
 		return $this;
 	}
-
-	
 
 }

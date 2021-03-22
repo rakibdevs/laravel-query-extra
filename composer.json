@@ -1,6 +1,8 @@
 {
     "name": "rakibdevs/laravel-query-extra",
+    "description": "Run complex SQL queries from API requests",
     "keywords": ["laravel","query","query builder","bulk update"],
+    "license": "MIT",
     "authors": [
         {
             "name": "Md. Rakibul Islam",
@@ -8,10 +10,23 @@
             "website": "https:://rakibul.dev"
         }
     ],
-    "license": "MIT",
+    "require": {
+        "php": "^7.3|^8.0",
+        "illuminate/support": "^6.0|^7.0|^8.0",
+        "illuminate/database": "^6.0|^7.0|^8.0"
+    },
+     "require-dev": {
+        "orchestra/testbench": "^4.9|^5.8|^6.3",
+        "phpunit/phpunit": "^9.0"
+    },
     "autoload": {
         "psr-4": {
             "RakibDevs\\QueryExtra\\": "src"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "RakibDevs\\QueryExtra\\Tests\\": "tests"
         }
     },
     "extra": {
@@ -22,5 +37,5 @@
         }
     },
     "minimum-stability": "dev",
-    "version": "dev-master"
+    "prefer-stable": true
 }
