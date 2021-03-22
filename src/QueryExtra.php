@@ -15,12 +15,15 @@ use RakibDevs\QueryExtra\Options\BulkUpdate;
 class QueryExtra
 {
 
-	public function bulkUpdate(string $table, string $key, array $update)
+	protected $table;
+
+
+	public static function bulkUpdate(string $table, string $key, array $update)
 	{
-		$this->run(BulkUpdate::make($table, $key, $update));
+		self::run(BulkUpdate::make($table, $key, $update));
 	}
 
-	public function run(string $qr)
+	public static function run(string $qr)
 	{
 		dd($qr);
 		return DB::statement($qr);

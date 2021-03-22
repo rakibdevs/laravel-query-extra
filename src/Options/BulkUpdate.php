@@ -1,16 +1,19 @@
 <?php
 
-namespace RakibDevs\QueryExtra\Options\BulkUpdate;
+namespace RakibDevs\QueryExtra\Options;
 
 
 class BulkUpdate
 {
 
-	protected function make(string $table, string $key, array $update)
+	public static function make(string $table, string $key, array $update)
     {
-    	$values = collect($update['data'])->pluck('value');
+    	$values = collect($update)
+            ->pluck('value')
+            ->toArray();
+
     	$qr  = "update $table set ";
-    	$qr .= $this->case($update, $key);
+    	$qr .= self::case($update, $key);
     	$qr .= " where $key in (".implode(', ',$values).")";
 
     	return $qr;
@@ -18,12 +21,12 @@ class BulkUpdate
 
   
 
-    protected function case(array $update, $key)
+    private static function case(array $update, $key)
     {
-    	foreach ($update['data'] as $key => $val) {
-            foreach ($val['data'] as $k => $v) {
+    	foreach ($update as $k => $val) {
+            foreach ($val['data'] as $k1 => $v) {
                 if($v){
-                    $cases[$k][] =  "when ".$val['value']." then $v";
+                    $cases[$k1][] =  "when ".$val['value']." then $v";
                 }
             }
         }
