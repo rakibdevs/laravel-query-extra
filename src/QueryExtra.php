@@ -2,7 +2,7 @@
 namespace RakibDevs\QueryExtra;
 
 /**
- * Update different conditional data in a single query.
+ * Run complex queries in Laravel
  *
  * @package  laravel-query-extra
  * @author   Md. Rakibul Islam <rakib1708@gmail.com>
@@ -13,12 +13,12 @@ namespace RakibDevs\QueryExtra;
 use RakibDevs\QueryExtra\Options\BulkUpdate;
 use RakibDevs\QueryExtra\Traits\ProcessQuery;
 
-class QueryExtra
+class QueryExtra 
 {
 	use ProcessQuery;
 
 	/**
-	 * Bulk update
+	 * Update different conditional data in a single query.
      * 
      * @param  array $update
      * @return boolean
@@ -26,8 +26,7 @@ class QueryExtra
 
 	public function bulkUpdate(array $update)
 	{
-		$this->buildUpdateQuery($update)
-			 ->run();
+		$this->buildUpdateQuery($update)->run();
 	}
 
 	/**
@@ -57,8 +56,7 @@ class QueryExtra
 
 	protected function buildUpdateQuery(array $update)
 	{
-		$this->query = (new BulkUpdate)
-			            ->make($this->table, $this->whereKey, $update);
+		$this->query = (new BulkUpdate)->make($this->table, $this->whereKey, $update);
 		return $this;
 	}
 
