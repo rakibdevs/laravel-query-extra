@@ -24,7 +24,7 @@ class QueryExtra
      * @return boolean
     */
 
-	public function bulkUpdate(array $update)
+	public function bulkup(array $update)
 	{
 		$this->buildUpdateQuery($update)->run();
 	}

@@ -3,6 +3,7 @@
 namespace RakibDevs\QueryExtra\Traits;
 
 use Illuminate\Support\Facades\DB;
+use RakibDevs\QueryExtra\Exceptions\InvalidKey;
 
 trait ProcessQuery
 {
@@ -38,7 +39,10 @@ trait ProcessQuery
 
 	public function table(string $table)
 	{
+
 		$this->table = $table;
+
+		DB::table($table);
 
 		return $this;
 	}
@@ -65,6 +69,9 @@ trait ProcessQuery
 
 	protected function run()
 	{
+		if(is_null($this->query))
+			throw new InvalidQuery();
+
 		return DB::statement($this->query);
 	}
 }

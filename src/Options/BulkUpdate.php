@@ -2,42 +2,74 @@
 
 namespace RakibDevs\QueryExtra\Options;
 
+use RakibDevs\QueryExtra\Exceptions\InvalidTable;
+use RakibDevs\QueryExtra\Exceptions\InvalidKey;
+use RakibDevs\QueryExtra\Exceptions\InvalidData;
 
-class BulkUpdate
+class BulkUpdate 
 {
+    /**
+     * make update query
+     *
+     * @return string $query
+     */
 
-	public static function make(string $table, string $key, array $update)
+
+	public static function make($table,$key, array $update): string
     {
-    	$values = collect($update)
-            ->pluck('value')
-            ->toArray();
+        if (is_null($table)) 
+            throw new InvalidTable('table() is missing');
+        
+        if (is_null($key))
+            throw new InvalidKey('whereKey() is missing');
+        
+        if (empty($update))
+            throw new InvalidData('No data found!');
 
-    	$qr  = "update $table set ";
-    	$qr .= self::case($update, $key);
-    	$qr .= " where $key in (".implode(', ',$values).")";
+    	$arr   = collect($update)->pluck('value')->toArray();
+        $arr   = implode(', ',$arr);
+    	$case  = self::condition($update, $key);
 
-    	return $qr;
+        // raw sql query for bulk update
+    	return "update $table set ".$case." where $key in (".$arr.")";
+
+    	
     }
 
   
-
-    private static function case(array $update, $key)
+    /**
+     * get conditional case statement
+     *
+     * @return string $query
+     */
+    private static function condition(array $update, $key)
     {
-    	foreach ($update as $k => $val) {
+        foreach ($update as $k => $val) {
+            if (!isset($val['value'])) {
+                throw new InvalidKey('No value assigned to the key `value`');
+            }
+            $column = $val['value'];
             foreach ($val['data'] as $k1 => $v) {
-                if($v){
-                    $cases[$k1][] =  "when ".$val['value']." then $v";
-                }
+                $cases[$k1][] =  "when $column then '".$v."'";
             }
         }
 
-        foreach ($cases as $k => $v) {
-    		$s[$k] = $k." = case $key ".implode(" ",$v)." end";
-    	}
-
-        return implode(', ', $s);
-
+        return self::case($cases, $key);
     }
 
+    /**
+     * build case statement
+     *
+     * @return string $query
+     */
+
+    private static function case(array $cases, $key)
+    {
+        foreach ($cases as $k => $v) {
+            $s[$k] = $k." = case $key ".implode(" ",$v)." end";
+        }
+
+        return implode(', ', $s);
+    }
     
 }

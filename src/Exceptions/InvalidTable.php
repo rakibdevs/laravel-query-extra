@@ -4,7 +4,7 @@ namespace RakibDevs\QueryExtra\Exceptions;
 
 use Exception;
 
-class InvalidQuery extends Exception
+class InvalidTable extends Exception
 {
     /**
      * Report the exception.
