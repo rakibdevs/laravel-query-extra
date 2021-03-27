@@ -26,11 +26,11 @@ class QueryExtra
 
 	public function bulkup(array $update)
 	{
-		$this->buildUpdateQuery($update)->run();
+		$this->makeQueryForUpdate($update)->run();
 	}
 
 	/**
-	 * Build and set query for bulk update
+	 * make and set query for bulk update
      * 
      * @param  array $update
      * @return $this
@@ -54,7 +54,7 @@ class QueryExtra
      *
      */
 
-	protected function buildUpdateQuery(array $update)
+	protected function makeQueryForUpdate(array $update)
 	{
 		$this->query = (new BulkUpdate)->make($this->table, $this->whereKey, $update);
 		return $this;

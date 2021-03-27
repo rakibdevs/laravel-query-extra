@@ -1,6 +1,6 @@
 {
     "name": "rakibdevs/laravel-query-extra",
-    "description": "Run complex SQL queries from API requests",
+    "description": "Run complex SQL queries from API requests such as update different conditional records in a single query",
     "keywords": ["laravel","query","query builder","bulk update"],
     "license": "MIT",
     "authors": [

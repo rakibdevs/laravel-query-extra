@@ -26,7 +26,7 @@ class BulkUpdate
         if (empty($update))
             throw new InvalidData('No data found!');
 
-    	$arr   = collect($update)->pluck('value')->toArray();
+    	$arr   = collect($update)->pluck('keyval')->toArray();
         $arr   = implode(', ',$arr);
     	$case  = self::condition($update, $key);
 
@@ -46,10 +46,10 @@ class BulkUpdate
     {
         foreach ($update as $k => $val) {
             
-            if (!isset($val['value']))
-                throw new InvalidKey('No value assigned to the key `value`');
+            if (!isset($val['keyval']))
+                throw new InvalidKey('No value assigned to the key `keyval`');
             
-            $column = $val['value'];
+            $column = $val['keyval'];
             foreach ($val['data'] as $k1 => $v) {
                 $cases[$k1][] =  "when $column then '".$v."'";
             }
