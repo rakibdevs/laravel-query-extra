@@ -45,9 +45,10 @@ class BulkUpdate
     private static function condition(array $update, $key)
     {
         foreach ($update as $k => $val) {
-            if (!isset($val['value'])) {
+            
+            if (!isset($val['value']))
                 throw new InvalidKey('No value assigned to the key `value`');
-            }
+            
             $column = $val['value'];
             foreach ($val['data'] as $k1 => $v) {
                 $cases[$k1][] =  "when $column then '".$v."'";
