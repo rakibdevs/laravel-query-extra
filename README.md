@@ -42,25 +42,25 @@ To update multiple records in a single query,
 
 ```php
 
-	$arrr = array(
-	    		array(
-	    			'data' => array(
-	    				'cat_name' => 'Category 3', // column name
-	                    'status' => 1 				// column name
-	    			),
-	    			'keyval' => 3 	// column value for whereKey() condition
-	    		),
-	    		array(
-	    			'data' => array(
-	    				'cat_name' => 'Catefory 2',
-	                    'status' => 2
-	    			),
-	    			'keyval' => 2
-	    		),
-	            array(
-	            .......................
-	            .......................
-	    	);
+$arrr = array(
+	    array(
+		'data' => array(
+		    'cat_name' => 'Category 3', // column name
+	            'status' => 1 		// column name
+		),
+		'keyval' => 3 	// column value for whereKey() condition
+	    ),
+	    array(
+		'data' => array(
+		    'cat_name' => 'Category 2', // column name
+	            'status' => 1 		// column name
+		),
+		'keyval' => 2 	// column value for whereKey() condition
+	    ),
+	    array(
+	        .......................
+	        .......................
+	);
 ```
 
 ```php
