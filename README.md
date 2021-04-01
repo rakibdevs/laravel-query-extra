@@ -5,7 +5,6 @@
 [![GitHub issues](https://img.shields.io/github/issues/rakibdevs/laravel-query-extra)](https://github.com/rakibdevs/laravel-query-extra/issues)
 [![GitHub license](https://img.shields.io/github/license/rakibdevs/laravel-query-extra)](https://github.com/rakibdevs/laravel-query-extra/blob/master/LICENSE)
 
-
  Run complex SQL queries from API requests such as update different conditional records in a single query.
 
 
