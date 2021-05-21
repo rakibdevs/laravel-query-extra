@@ -1,6 +1,5 @@
 ✔ Contribute to improve the package! Thanks in advance.
 ## Laravel Query Extra
-![Packagist](https://img.shields.io/packagist/dt/rakibdevs/laravel-query-extra)
 [![GitHub stars](https://img.shields.io/github/stars/rakibdevs/laravel-query-extra)](https://github.com/rakibdevs/laravel-query-extra/stargazers)
 [![GitHub forks](https://img.shields.io/github/forks/rakibdevs/laravel-query-extra)](https://github.com/rakibdevs/laravel-query-extra/network)
 [![GitHub issues](https://img.shields.io/github/issues/rakibdevs/laravel-query-extra)](https://github.com/rakibdevs/laravel-query-extra/issues)
